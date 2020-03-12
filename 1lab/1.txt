@@ -1,1 +1,4 @@
-D09D D0B8 D0BA D0BE D0BB D0B0 D0B9 20 D094 D183 D084 D0B8 D08D
+				Content-Type			Content-Length	Server
+/index.txt			text/plain			14		nginx/1.2.2
+/image/web_technologies.png	image/png			335525		nginx/1.2.2
+/media/Water.mp4		application/octet-stream	1137202		nginx/1.2.2
