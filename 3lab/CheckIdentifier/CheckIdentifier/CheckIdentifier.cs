@@ -8,9 +8,9 @@ namespace CheckIdentifier
 {
     public class CheckIdentifier
     {
-        private const string ERROR_MSG = "Pass one argument to the program for verification.";
-        private const string VALID_SUCCESS = "Yes! Identificator validation was successful!";
-        private const string VALID_FAIL = "No! Identificator validation failed. Unexpected symbol '";
+        public const string ERROR_MSG = "Pass one argument to the program for verification.";
+        public const string VALID_SUCCESS = "Yes! Identificator validation was successful!";
+        public const string VALID_FAIL = "No! Identificator validation failed. Unexpected symbol '";
 
         public static void Main(string[] args)
         {
