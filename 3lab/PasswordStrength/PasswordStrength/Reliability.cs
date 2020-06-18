@@ -8,38 +8,50 @@ namespace PasswordStrength
 {
     public class Reliability
     {
-        public int NumberOfAllSymbols(string password)
+        public int StrenghtByNumberOfAllSymbols(string password)
         {
-            return password.Length;
+            return 4 * password.Length;
         }
 
-        public int NumberOfAllDigits(string password)
+        public int StrenghtByNumberOfAllDigits(string password)
         {
-            return Counter(char.IsDigit, password);
+            return 4 * Counter(char.IsDigit, password);
         }
 
-        public int NumberOfAllSymbolsInUpperCase(string password)
+        public int StrenghtByAllSymbolsInUpperCase(string password)
         {
-            return Counter(char.IsUpper, password);
+            int numberInUpperCase = Counter(char.IsUpper, password);
+            if (numberInUpperCase != 0)
+            {
+                numberInUpperCase = (password.Length - numberInUpperCase) * 2;
+            }
+
+            return numberInUpperCase;
         }
 
-        public int NumberOfAllSymbolsInLowerCase(string password)
+        public int StrenghtByAllSymbolsInLowerCase(string password)
         {
-            return Counter(char.IsLower, password);
+            int numberInLowerCase = Counter(char.IsLower, password);
+            if (numberInLowerCase != 0)
+            {
+                numberInLowerCase = (password.Length - numberInLowerCase) * 2;
+            }
+
+            return numberInLowerCase;
         }
 
-        public bool OnlyLetters(string password)
+        public int StrenghtByOnlyLetters(string password)
         {
             if (Counter(char.IsLetter, password) == password.Length)
-                return true;
-            return false;
+                return -password.Length;
+            return 0;
         }
 
-        public bool OnlyDigits(string password)
+        public int StrenghtByOnlyDigits(string password)
         {
             if (Counter(char.IsDigit, password) == password.Length)
-                return true;
-            return false;
+                return -password.Length;
+            return 0;
         }
 
         public int RepeatSymbol(string password)
@@ -81,29 +93,9 @@ namespace PasswordStrength
 
         public int ReliabilityAnalysis(string password)
         {
-            int numberInLowerCase = NumberOfAllSymbolsInLowerCase(password);
-            if (numberInLowerCase != 0)
-            {
-                numberInLowerCase = (password.Length - numberInLowerCase) * 2;
-            }
-            int numberInUpperCase = NumberOfAllSymbolsInUpperCase(password);
-            if (numberInUpperCase != 0)
-            {
-                numberInUpperCase = (password.Length - numberInUpperCase) * 2;
-            }
-            int onlyDigits = 0;
-            if (OnlyDigits(password))
-            {
-                onlyDigits -= password.Length;
-            }
-            int onlyLetters = 0;
-            if (OnlyLetters(password))
-            {
-                onlyLetters -= password.Length;
-            }
-
-            return (4 * NumberOfAllSymbols(password) + 4 * NumberOfAllDigits(password) +
-                numberInLowerCase + numberInUpperCase + onlyLetters + onlyDigits - RepeatSymbol(password));
+            return (StrenghtByNumberOfAllSymbols(password) + StrenghtByNumberOfAllDigits(password) +
+                    StrenghtByAllSymbolsInLowerCase(password) + StrenghtByAllSymbolsInUpperCase(password) 
+                    + StrenghtByOnlyDigits(password) + StrenghtByOnlyLetters(password) - RepeatSymbol(password));
         }
     }
 }

@@ -143,64 +143,48 @@ namespace PasswordStrength.Tests
         public void NumberOfAllSymbols_ShouldReturnRightNumberOfSymbols()
         {
             string password = "S12s3f45D";
-            int expected = 9;
-            Assert.Equal(expected, reliability.NumberOfAllSymbols(password));
+            int expected = 36;
+            Assert.Equal(expected, reliability.StrenghtByNumberOfAllSymbols(password));
         }
 
         [Fact]
         public void NumberOfAllDigits_ShouldReturnRightNumberOfDigits()
         {
             string password = "S12s3f45D5434";
-            int expected = 9;
-            Assert.Equal(expected, reliability.NumberOfAllDigits(password));
+            int expected = 36;
+            Assert.Equal(expected, reliability.StrenghtByNumberOfAllDigits(password));
         }
 
         [Fact]
         public void NumberOfAllSymbolsInUpperCase_ShouldReturnRightNumberOfSymbols()
         {
             string password = "S12s3f45D5434";
-            int expected = 2;
-            Assert.Equal(expected, reliability.NumberOfAllSymbolsInUpperCase(password));
+            int expected = 22;
+            Assert.Equal(expected, reliability.StrenghtByAllSymbolsInUpperCase(password));
         }
 
         [Fact]
         public void NumberOfAllSymbolsInLowerCase_ShouldReturnRightNumberOfSymbols()
         {
             string password = "S12s3f45D5434";
-            int expected = 2;
-            Assert.Equal(expected, reliability.NumberOfAllSymbolsInLowerCase(password));
+            int expected = 22;
+            Assert.Equal(expected, reliability.StrenghtByAllSymbolsInLowerCase(password));
         }
 
         [Fact]
         public void BooleanOfLetters_ShouldReturnFalse()
         {
             string password = "S12s3f45D5434";
-            bool expected = false;
-            Assert.Equal(expected, reliability.OnlyLetters(password));
+            int expected = 0;
+            Assert.Equal(expected, reliability.StrenghtByOnlyLetters(password));
         }
-
-        [Fact]
-        public void BooleanOfLetters_ShouldReturnTrue()
-        {
-            string password = "f";
-            bool expected = true;
-            Assert.Equal(expected, reliability.OnlyLetters(password));
-        }
-
-        [Fact]
-        public void BooleanOfDigits_ShouldReturnTrue()
-        {
-            string password = "6764";
-            bool expected = true;
-            Assert.Equal(expected, reliability.OnlyDigits(password));
-        }
-
+        
         [Fact]
         public void BooleanOfDigits_ShouldReturnFalse()
         {
             string password = "6764d";
-            bool expected = false;
-            Assert.Equal(expected, reliability.OnlyDigits(password));
+            int expected = 4;
+            Assert.Equal(expected, reliability.StrenghtByOnlyDigits(password));
         }
 
         [Fact]
